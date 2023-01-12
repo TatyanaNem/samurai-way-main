@@ -1,0 +1,29 @@
+.addItemInputWrapper {
+    display: flex;
+}
+
+.addItemInputWrapper textarea {
+    width: 200px;
+}
+
+.addItemInputWrapper button {
+    align-self: center;
+    margin-left: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 2px;
+    background-color: #b194ee;
+    font-size: 20px;
+    font-weight: bold;
+    color: #364b56;
+    border: none;
+    box-shadow: 1px 1px 2px #1d2f38;
+}
+
+.addItemInputWrapper button:hover {
+    opacity: 0.8;
+}
+
+
+
+

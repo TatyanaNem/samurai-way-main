@@ -1,0 +1,10 @@
+.profileInfo__image {
+    width: 100%;
+    height: 150px;
+    background-image: url('http://i1.wallbox.ru/wallpapers/main2/201816/15241331225ad86d02d527c4.99975082.jpg');
+    background-size: contain;
+}
+
+.descriptionBlock {
+    padding: 10px;
+}

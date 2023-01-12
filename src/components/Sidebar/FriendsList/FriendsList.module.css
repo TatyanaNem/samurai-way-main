@@ -1,0 +1,49 @@
+.friendsList {
+    margin: 20px;
+    border-radius: 6px;
+    background-color: #fff;
+    box-shadow: 2px 2px 5px #1d2f38;
+}
+
+.friendsList h4 {
+    font-size: 30px;
+    font-weight: 600;
+    margin: 0;
+    padding: 12px;
+    color: #1d2f38;
+}
+
+.friendsList h4 span {
+    font-size: 80%;
+    opacity: 0.5;
+}
+
+.friendsListWrapper {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    list-style-type: none;
+    padding: 12px;
+    margin: 0;
+}
+
+.friendsListWrapper img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    text-align: center;
+    object-fit: cover;
+}
+
+.friendsListWrapper li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 15px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.friendsListWrapper li:hover {
+    opacity: 0.8;
+}

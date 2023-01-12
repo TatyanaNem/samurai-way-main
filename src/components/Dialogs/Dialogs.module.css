@@ -1,0 +1,88 @@
+.dialogs {
+    display: flex;
+    padding: 20px;
+}
+
+.dialogs__list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    width: 30%;
+}
+
+.dialogs__item {
+    border-radius: 5px;
+    color: mediumpurple;
+    margin-bottom: 20px;
+}
+
+.dialogs__link {
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    font-size: 16px;
+    text-decoration: none;
+    color: #000000;
+}
+
+.dialogs__link img {
+    width: 25px;
+    height: 25px;
+    margin-right: 15px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.dialogs__link::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 0;
+}
+
+.dialogs__link:hover::before {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(25, 43, 245, 0.1);
+    color: #ffffff;
+}
+
+.active {
+    color: mediumslateblue;
+    font-size: 18px;
+    background-color: rgba(25, 43, 245, 0.1);
+}
+
+.active > img {
+    width: 35px;
+    height: 35px;
+}
+
+.messages__list {
+    margin-left: 20px;
+}
+
+.messages__item {
+    position: relative;
+    padding: 10px;
+    background-color: #fff;
+    margin-bottom: 10px;
+    border: 1px solid grey;
+    border-radius: 4px 4px 4px 0;
+}
+
+.messages__item::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: -5px;
+    width: 5px;
+    height: 5px;
+    background: radial-gradient(circle at top left, rgba(0, 0, 0, 0) 5px, rgba(128, 128, 128, 1) 0);
+}

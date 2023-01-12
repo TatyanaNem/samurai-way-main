@@ -1,0 +1,17 @@
+.myPosts {
+    padding: 10px;
+}
+
+.postInput {
+}
+
+.textarea {
+    display: block;
+    width: 100%;
+    min-height: 100px;
+    margin-bottom: 10px;
+}
+
+.postInputButton {
+    padding: 5px 20px;
+}

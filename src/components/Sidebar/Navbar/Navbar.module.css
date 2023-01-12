@@ -1,0 +1,38 @@
+.nav {
+    padding: 20px;
+}
+
+.nav__list {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+.nav__item {
+    box-shadow: 2px 2px 5px #1d2f38;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.nav__item:hover {
+    opacity: 0.8;
+}
+
+.nav__item:last-child {
+    margin-bottom: 0;
+}
+
+.nav__link {
+    border-radius: 5px;
+    display: inline-block;
+    padding: 10px;
+    width: 100%;
+    text-decoration: none;
+    color: #000000;
+    background-color: #fff;
+}
+
+a.active {
+    color: mediumslateblue;
+}
+
