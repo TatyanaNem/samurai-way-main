@@ -1,0 +1,63 @@
+.usersList {
+    margin: 0;
+    padding: 0;
+}
+
+.userItem {
+    display: flex;
+}
+
+.userItem:not(:last-child) {
+    margin-bottom: 20px;
+}
+
+.userItem img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    box-shadow: 1px 1px 5px #1d2f38;
+}
+
+.userPhotoBlock {
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.userPhotoBlock button {
+    width: 100px;
+    padding: 2px 0;
+    background-color: #b194ee;
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+    border: none;
+    box-shadow: 1px 1px 2px #1d2f38;
+}
+
+.userDetailsBlock {
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+    padding: 20px;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    box-shadow: 1px 1px 2px #1d2f38;
+}
+
+.userDetailsBlock div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 24px;
+}
+
+.userStatus {
+    font-size: 18px;
+    color: #656464;
+    font-style: italic;
+}

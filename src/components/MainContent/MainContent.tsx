@@ -7,6 +7,7 @@ import Music from '../Music/Music';
 import Settings from '../Settings/Settings';
 import Sidebar from '../Sidebar/Sidebar';
 import {DialogsContainer} from '../Dialogs/DialogsContainer';
+import UsersContainer from '../Users/UsersContainer';
 
 const MainContent = () => {
     return (
@@ -16,6 +17,7 @@ const MainContent = () => {
                 <div className={s.mainContentWrapper}>
                     <Route path={'/profile'} render={() => <Profile /> }/>
                     <Route path={'/dialogs'} render={() => <DialogsContainer />}/>
+                    <Route path={'/users'} render={() => <UsersContainer />}/>
                     <Route path={'/news'} component={News}/>
                     <Route path={'/music'} component={Music}/>
                     <Route path={'/settings'} component={Settings}/>

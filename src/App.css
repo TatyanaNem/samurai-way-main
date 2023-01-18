@@ -3,6 +3,7 @@
 }
 
 .App {
+    font-family: 'Montserrat', sans-serif;
     grid-template-columns: 300px auto;
     background-color: #edf2f6;
 }
