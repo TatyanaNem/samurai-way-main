@@ -4,15 +4,14 @@ type UsersPageType = {
 
 export type UserType = {
     id: string
-    avatar: string
     name: string
-    surname: string
-    isFollowed: boolean
-    status: string
-    location: {
-        city: string
-        country: string
+    followed: boolean
+    photos: {
+        small: null | string
+        large: null | string
     }
+    status: null | string
+    uniqueUrlName: null | string
 }
 
 export type ActionsType = ReturnType<typeof followUserAC>

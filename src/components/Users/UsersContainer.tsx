@@ -1,9 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import Users from './Users';
 import {StateType} from '../../redux/redux-store';
 import {ActionsType, setUsersAC, unfollowUserAC, UserType} from '../../redux/usersReducer';
 import {followUserAC} from '../../redux/usersReducer';
+import Users from './Users';
 
 
 const mapStateToProps = (state: StateType) => {
@@ -24,4 +24,4 @@ const mapDispatchToProps = (dispatch: (action: ActionsType) => void) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Users);
+export default connect(mapStateToProps, mapDispatchToProps)(Users as any);
