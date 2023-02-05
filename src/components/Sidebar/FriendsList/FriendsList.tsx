@@ -3,6 +3,7 @@ import styles from './FriendsList.module.css';
 import {connect} from 'react-redux';
 import {StateType} from '../../../redux/redux-store';
 import {DialogItemType} from '../../../redux/store';
+import userPhoto from '../../../assets/images/userPhoto.png';
 
 type FriendsListPropsType = {
     dialogs: DialogItemType[]
@@ -17,7 +18,7 @@ const FriendsList = (props: FriendsListPropsType) => {
                 {props.dialogs.map(el => {
                     return (
                         <li key={el.id}>
-                            <img src={el.avatar} alt="Friend's avatar"/>
+                            <img src={el.avatar ? el.avatar : userPhoto} alt="Friend's avatar"/>
                             <div>{el.name}</div>
                         </li>
                     )

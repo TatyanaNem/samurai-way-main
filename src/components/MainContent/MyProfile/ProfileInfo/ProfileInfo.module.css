@@ -1,0 +1,89 @@
+.profile {
+    position: relative;
+    border: 1px solid #364b56;
+    box-shadow: 2px 2px 5px #364b56;
+    border-radius: 4px;
+    padding-bottom: 20px;
+}
+
+.profileInfo {
+    position: relative;
+    width: 100%;
+    height: 120px;
+    background-image: url('http://i1.wallbox.ru/wallpapers/main2/201816/15241331225ad86d02d527c4.99975082.jpg');
+    background-size: contain;
+    border-radius: 4px;
+}
+
+.profileImage {
+    position: absolute;
+    bottom: 0;
+    left: 20px;
+    transform: translateY(50%);
+    width: 150px;
+    height: 150px;
+    border: 3px solid #ffffff;
+    border-radius: 50%;
+}
+
+.descriptionBlock {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: auto;
+    padding-left: 250px;
+    padding-right: 20px;
+}
+
+.personalData {
+    min-width: 100px;
+    max-width: 400px;
+    padding: 20px;
+}
+
+.fullName {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    padding-right: 30px;
+    cursor: pointer;
+}
+
+.fullName:hover .svg,
+.status:hover svg {
+    fill: blue;
+}
+
+.svg {
+    margin-left: 12px;
+}
+
+.status {
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.lookingForJob {
+    position: absolute;
+    left: 20px;
+    bottom: -6%;
+    max-width: 200px;
+    min-height: 70px;
+    font-size: 22px;
+    padding: 2px;
+    text-align: center;
+    font-weight: bold;
+    color: #333333;
+    background-image: url('../../../../assets/images/purple-splash-purple.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.lookingForJob div {
+    font-size: 18px;
+    font-weight: normal;
+    color: #333333;
+}

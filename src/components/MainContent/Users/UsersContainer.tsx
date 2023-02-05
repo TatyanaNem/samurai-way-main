@@ -1,18 +1,18 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {connect} from 'react-redux';
-import {StateType} from '../../redux/redux-store';
+import {StateType} from '../../../redux/redux-store';
 import {
+    followTC,
+    getUsersTC,
     setCurrentPage,
     setTotalUsersCount,
-    setUsers, toggleIsFetching,
-    unfollowUser,
+    setUsers,
+    unfollowTC,
     UserType
-} from '../../redux/usersReducer';
-import {followUser} from '../../redux/usersReducer';
-import {Dispatch} from 'redux';
-import axios from 'axios';
+} from '../../../redux/usersReducer';
 import Users from './Users';
-import Preloader from '../common/Preloader/Preloader';
+import Preloader from '../../common/Preloader/Preloader';
+import {compose} from 'redux';
 
 export type MapStatePropsType = {
     users: UserType[],
@@ -20,15 +20,16 @@ export type MapStatePropsType = {
     totalUsersCount: number,
     usersPerPage: number
     isFetching: boolean
+    followingInProgress: string[]
 }
 
 export type MapDispatchPropsType = {
-    followUser: (userId: string) => void
-    unfollowUser: (userId: string) => void
+    followTC: (userId: string) => void
+    unfollowTC: (userId: string) => void
     setUsers: (users: UserType[]) => void
     setTotalUsersCount: (count: number) => void
     setCurrentPage: (pageNumber: number) => void
-    toggleIsFetching: (isFetching: boolean) => void
+    getUsersTC: (currentPage: number, usersPerPage: number) => void
 }
 
 type UsersPropsType = MapStatePropsType & MapDispatchPropsType
@@ -39,23 +40,12 @@ class UsersContainer extends React.Component<UsersPropsType> {
     }
 
     componentDidMount() {
-        this.props.toggleIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.usersPerPage}`)
-            .then(response => {
-                this.props.toggleIsFetching(false)
-                this.props.setUsers(response.data.items)
-                this.props.setTotalUsersCount(response.data.totalCount)
-            })
+        this.props.getUsersTC(this.props.currentPage, this.props.usersPerPage)
     }
 
     onPageChanged = (pageNumber: number) => {    // стрелочный тип либо как вариант при передаче в атрибутах this.onPageChanged.bind(this)
         this.props.setCurrentPage(pageNumber)
-        this.props.toggleIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.usersPerPage}`)
-            .then(response => {
-                this.props.toggleIsFetching(false)
-                this.props.setUsers(response.data.items)
-            })
+        this.props.getUsersTC(pageNumber, this.props.usersPerPage)
     }
 
     render() {
@@ -63,14 +53,15 @@ class UsersContainer extends React.Component<UsersPropsType> {
             {this.props.isFetching
                 ? <Preloader/>
                 : <Users
-                totalUsersCount={this.props.totalUsersCount}
-                users={this.props.users}
-                currentPage={this.props.currentPage}
-                usersPerPage={this.props.usersPerPage}
-                follow={this.props.followUser}
-                unfollow={this.props.unfollowUser}
-                onPageChanged={this.onPageChanged}
-            />}
+                    totalUsersCount={this.props.totalUsersCount}
+                    users={this.props.users}
+                    currentPage={this.props.currentPage}
+                    usersPerPage={this.props.usersPerPage}
+                    followUser={this.props.followTC}
+                    unfollowUser={this.props.unfollowTC}
+                    onPageChanged={this.onPageChanged}
+                    followingInProgress={this.props.followingInProgress}
+                />}
         </>
     }
 }
@@ -82,7 +73,8 @@ const mapStateToProps = (state: StateType): MapStatePropsType => {
         currentPage: state.usersPage.currentPage,
         totalUsersCount: state.usersPage.totalUsersCount,
         usersPerPage: state.usersPage.usersPerPage,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        followingInProgress: state.usersPage.followingInProgress
     })
 }
 
@@ -110,10 +102,11 @@ const mapStateToProps = (state: StateType): MapStatePropsType => {
 }*/
 
 
-export default connect<MapStatePropsType, MapDispatchPropsType, {}, StateType>(mapStateToProps, {
-    followUser,
-    unfollowUser,
+export default compose<FC>(connect<MapStatePropsType, MapDispatchPropsType, {}, StateType>(mapStateToProps, {
+    followTC,
+    unfollowTC,
     setUsers,
     setTotalUsersCount,
     setCurrentPage,
-    toggleIsFetching})(UsersContainer as any);
+    getUsersTC
+}))(UsersContainer);

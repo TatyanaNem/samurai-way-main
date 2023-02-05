@@ -1,9 +1,9 @@
 import React from 'react';
 import s from './Dialogs.module.css';
-import AddItemInput from '../AddItemInput/AddItemInput';
+import AddItemInput from '../../AddItemInput/AddItemInput';
 import {DialogItem} from './DialogItem';
 import {MessageItem} from './MessageItem';
-import {DialogsPageType} from '../../redux/store';
+import {DialogsPageType} from '../../../redux/store';
 
 type DialogsPropsType = {
     dialogsPage: DialogsPageType

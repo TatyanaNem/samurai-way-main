@@ -1,10 +1,12 @@
 import React from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
-import {ProfilePageType} from '../../../redux/store';
+import {PostType} from '../../../../redux/myProfileReducer';
+
 
 type MyPostsPropsType = {
-    profilePage: ProfilePageType
+    posts: Array<PostType>
+    newPostText: string
     addPost: () => void
     updateNewPostText: (text: string) => void
 }
@@ -27,11 +29,11 @@ const MyPosts = (props: MyPostsPropsType) => {
         <div className={s.myPosts}>
             <h2 className="title">My posts</h2>
             <div className={s.postInput}>
-                <textarea className={s.textarea} ref={newPostElement} onChange={onChangeHandler} value={props.profilePage.newPostText}></textarea>
+                <textarea className={s.textarea} ref={newPostElement} onChange={onChangeHandler} value={props.newPostText}></textarea>
                 <button className={s.postInputButton} onClick={onClickHandler}>Add post</button>
             </div>
             <ol className="postsList">
-                {props.profilePage.posts.map(el => {
+                {props.posts.map(el => {
                     return <Post key={el.id} id={el.id} message={el.message} likesCount={el.likesCount}/>
                 })}
             </ol>

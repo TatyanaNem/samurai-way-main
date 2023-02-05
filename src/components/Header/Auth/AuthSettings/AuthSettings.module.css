@@ -1,0 +1,54 @@
+.authSettings {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.authSettings::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    right: 10px;
+    top: 50%;
+    border-bottom: 2px solid #ffffff;
+    border-right: 2px solid #ffffff;
+    transform: rotate(45deg) translateY(-100%);
+}
+
+.authSettings:hover {
+    background-color: #364b56;
+}
+
+.userPhoto {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.userName {
+    position: relative;
+    display: inline-block;
+    min-width: 180px;
+    padding: 10px;
+    text-align: right;
+    color: white;
+}
+
+.userName::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 20px;
+    height: 20px;
+    background-image: url('/src/assets/images/arrow-left.svg');
+    background-position: right center;
+}
+
+.authSettingsModal {
+    display: none;
+}

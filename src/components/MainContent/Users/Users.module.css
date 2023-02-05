@@ -41,6 +41,10 @@
     margin-right: 20px;
 }
 
+.userPhotoBlock img:hover {
+    opacity: 0.8;
+}
+
 .userPhotoBlock button {
     width: 100px;
     padding: 2px 0;
@@ -50,6 +54,20 @@
     color: #ffffff;
     border: none;
     box-shadow: 1px 1px 2px #1d2f38;
+    cursor: pointer;
+}
+
+.userPhotoBlock button:hover {
+    opacity: 0.8;
+}
+
+.userPhotoBlock button:active {
+    box-shadow: none;
+}
+
+.userPhotoBlock button:disabled {
+    background-color: mediumpurple;
+    opacity: 0.5;
 }
 
 .userDetailsBlock {

@@ -22,3 +22,16 @@
     height: 31px;
     object-fit: cover;
 }
+
+.loginLink {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    cursor: pointer;
+    color: white;
+    text-decoration: none;
+}
+
+.loginLink:hover {
+    background-color: #364b56;
+}

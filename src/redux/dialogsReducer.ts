@@ -1,4 +1,5 @@
-import {ActionsType, DialogsPageType, MessageItemType} from './store';
+import {DialogsPageType, MessageItemType} from './store';
+import {ActionsType} from './myProfileReducer';
 
 export type AddMessageActionType = {
     type: 'ADD-MESSAGE'
@@ -28,9 +29,13 @@ const initialState: DialogsPageType = {
         {
             id: '3',
             name: 'Sveta',
-            avatar: 'https://www.radiodetector.ru/wp-content/uploads/2022/05/270143ffce849dcf742941a97e95b6a9.jpg'
+            avatar: null
         },
-        {id: '4', name: 'Sasha', avatar: 'http://myhomeinet.ru/ava/i/56/92ae5cfef57d9ef9a523753e45fc9b0b.jpg'},
+        {
+            id: '4',
+            name: 'Sasha',
+            avatar: null
+        },
         {
             id: '5',
             name: 'Viktor',

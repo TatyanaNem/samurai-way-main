@@ -1,4 +1,4 @@
-import {MessageItemType} from '../../redux/store';
+import {MessageItemType} from '../../../redux/store';
 import s from './Dialogs.module.css';
 import React from 'react';
 
