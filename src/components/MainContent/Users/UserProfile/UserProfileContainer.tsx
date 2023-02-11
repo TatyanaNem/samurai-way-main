@@ -8,7 +8,6 @@ import {compose} from 'redux';
 
 type MapStatePropsType = {
     posts: PostType[]
-    newPostText: string
     profile: null | ProfileType
     isAuth: boolean
 }
@@ -38,7 +37,6 @@ class UserProfileContainer extends React.Component<NewProfileContainerPropsType>
         return <UserProfile {...this.props}
                           profile={this.props.profile}
                           posts={this.props.posts}
-                          newPostText={this.props.newPostText}
                           isAuth={this.props.isAuth}
         />
     }
@@ -47,7 +45,6 @@ class UserProfileContainer extends React.Component<NewProfileContainerPropsType>
 const mapStateToProps = (state: StateType): MapStatePropsType => {
     return {
         posts: state.profilePage.posts,
-        newPostText: state.profilePage.newPostText,
         profile: state.profilePage.profile,
         isAuth: state.auth.isAuth
     }

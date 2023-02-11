@@ -1,11 +1,10 @@
-import {AddMessageActionType, UpdateNewMessageTextActionType} from './dialogsReducer';
 import {Dispatch} from 'redux';
 import {profileAPI} from '../API/profileAPI';
+import {AddMessageActionType} from './dialogsReducer';
 
 export type ProfilePageType = {
     profile: null | ProfileType
     posts: Array<PostType>
-    newPostText: string
 }
 
 export type ProfileType = {
@@ -38,6 +37,7 @@ export type PostType = {
 
 export type AddPostActionType = {
     type: 'ADD-POST'
+    newPostMessage: string
 }
 
 export type UpdateNewPostTextActionType = {
@@ -46,14 +46,13 @@ export type UpdateNewPostTextActionType = {
 }
 
 export type ActionsType = AddPostActionType
-    | UpdateNewPostTextActionType
     | AddMessageActionType
-    | UpdateNewMessageTextActionType
+    | UpdateNewPostTextActionType
     | ReturnType<typeof setUserProfileAC>
     | ReturnType<typeof setProfileStatusAC>
 
-export const AddPostAC = () => {
-    return {type: 'ADD-POST'} as const
+export const AddPostAC = (newPostMessage: string) => {
+    return {type: 'ADD-POST', newPostMessage} as const
 }
 
 export const UpdateNewPostTextAC = (text: string) => {
@@ -76,15 +75,14 @@ const initialState: ProfilePageType = {
         {id: '4', message: 'I\'ve already learnt HTML and CSS', likesCount: 23},
         {id: '5', message: 'Yo!!!', likesCount: 36},
         {id: '6', message: 'Yo!!!', likesCount: 32},
-    ],
-    newPostText: ''
+    ]
 }
 
 const myProfileReducer = (state: ProfilePageType = initialState, action: ActionsType) => {
     switch (action.type) {
         case 'ADD-POST':
-            const newPost: PostType = {id: (Math.random() * 100).toString(), message: state.newPostText, likesCount: 0}
-            return {...state, posts: [newPost, ...state.posts], newPostText: ''}
+            const newPost = {id: (Math.random() * 100).toString(), message: action.newPostMessage, likesCount: 0}
+            return {...state, posts: [newPost, ...state.posts]}
         case 'UPDATE-NEW-POST-TEXT':
             return {...state, newPostText: action.newText}
         case 'SET-USER-PROFILE':
@@ -96,7 +94,7 @@ const myProfileReducer = (state: ProfilePageType = initialState, action: Actions
     }
 }
 
-export const setUserProfileTC = (userId: string) => (dispatch: Dispatch) => {
+export const setUserProfileTC = (userId: number) => (dispatch: Dispatch) => {
     profileAPI.getUserProfile(userId)
         .then(data => dispatch(setUserProfileAC(data)))
 }

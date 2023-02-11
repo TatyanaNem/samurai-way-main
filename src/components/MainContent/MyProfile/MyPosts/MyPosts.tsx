@@ -1,37 +1,30 @@
 import React from 'react';
-import s from './MyPosts.module.css';
+import styles from './MyPosts.module.css';
 import Post from './Post/Post';
 import {PostType} from '../../../../redux/myProfileReducer';
+import {Field, InjectedFormProps, reduxForm} from 'redux-form';
+import {Textarea} from '../../../common/FormsControls/FormsControls';
+import {maxLengthCreator, required} from '../../../common/validators/validators';
 
 
 type MyPostsPropsType = {
     posts: Array<PostType>
-    newPostText: string
-    addPost: () => void
-    updateNewPostText: (text: string) => void
+    addPost: (newPostMessage: string) => void
+}
+
+type FormDataType = {
+    newPostMessage: string
 }
 
 const MyPosts = (props: MyPostsPropsType) => {
-    const newPostElement = React.createRef<HTMLTextAreaElement>();
-    const onClickHandler = () => {
-        if (newPostElement && newPostElement.current) {
-            props.addPost()
-        }
-    }
-    const onChangeHandler = () => {
-        if (newPostElement && newPostElement.current) {
-            let text = newPostElement.current.value;
-            props.updateNewPostText(text)
-        }
+    const onSubmit = (formData: FormDataType) => {
+        props.addPost(formData.newPostMessage)
     }
 
     return (
-        <div className={s.myPosts}>
+        <div className={styles.myPosts}>
             <h2 className="title">My posts</h2>
-            <div className={s.postInput}>
-                <textarea className={s.textarea} ref={newPostElement} onChange={onChangeHandler} value={props.newPostText}></textarea>
-                <button className={s.postInputButton} onClick={onClickHandler}>Add post</button>
-            </div>
+            <AddPostReduxForm onSubmit={onSubmit}/>
             <ol className="postsList">
                 {props.posts.map(el => {
                     return <Post key={el.id} id={el.id} message={el.message} likesCount={el.likesCount}/>
@@ -40,5 +33,23 @@ const MyPosts = (props: MyPostsPropsType) => {
         </div>
     )
 }
+
+const maxLength100 = maxLengthCreator(100)
+
+const AddPostForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
+    return (
+        <form onSubmit={props.handleSubmit} className={styles.addPostForm}>
+            <Field placeholder='Write, what you think about...'
+                   name='newPostMessage'
+                   component={Textarea}
+                   validate={[required, maxLength100]}
+            >
+            </Field>
+            <button>Public</button>
+        </form>
+    )
+}
+
+const AddPostReduxForm = reduxForm<FormDataType>({form: 'profileAddPostForm'})(AddPostForm)
 
 export default MyPosts;

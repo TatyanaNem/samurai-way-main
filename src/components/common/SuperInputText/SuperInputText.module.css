@@ -1,0 +1,21 @@
+.errorInput {
+    padding: 5px;
+    width: 372px;
+    height: 36px;
+    border: 1px solid #CC1439;
+    border-radius: 5px;
+
+}
+
+.errorInput:focus {
+    outline: none;
+    padding: 5px;
+}
+
+.error {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #CC1439;
+}

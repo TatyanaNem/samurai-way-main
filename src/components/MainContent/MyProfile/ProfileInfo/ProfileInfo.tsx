@@ -4,7 +4,6 @@ import {ProfileType} from '../../../../redux/myProfileReducer';
 import userPhoto from '../../../../assets/images/userPhoto.png';
 import {FaPen} from 'react-icons/fa';
 import EditableSpan from '../../../common/EditableSpan';
-import {useDispatch} from 'react-redux';
 
 type ProfileInfoPropsType = {
     profile: null | ProfileType

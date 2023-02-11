@@ -6,11 +6,10 @@ import {PostType, ProfileType} from '../../../redux/myProfileReducer';
 type ProfilePropsType = {
     profile: null | ProfileType
     posts: PostType[]
-    newPostText: string
     isAuth: boolean
 }
 
-const MyProfile = (props: ProfilePropsType) => {
+const Profile = (props: ProfilePropsType) => {
     console.log('props: ', props)
     //if (!props.isAuth) return <Redirect to={'/login'}/>
 
@@ -20,4 +19,4 @@ const MyProfile = (props: ProfilePropsType) => {
     </div>
 }
 
-export default MyProfile;
+export default Profile;

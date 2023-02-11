@@ -1,10 +1,8 @@
-import React, {FC} from 'react';
+import {FC} from 'react';
 import Dialogs from './Dialogs';
-import {AddMessageAC, UpdateNewMessageTextAC} from '../../../redux/dialogsReducer';
+import {AddMessageAC} from '../../../redux/dialogsReducer';
 import {connect} from 'react-redux';
 import {StateType} from '../../../redux/redux-store';
-import {ActionsType} from '../../../redux/myProfileReducer';
-import {withAuthRedirect} from '../../../HOC/withAuthRedirect';
 import {compose} from 'redux';
 
 const mapStateToProps = (state: StateType) => {
@@ -13,14 +11,13 @@ const mapStateToProps = (state: StateType) => {
     }
 }
 
-const mapDispatchToProps = (dispatch: (action: ActionsType) => void) => {
+const mapDispatchToProps = (dispatch: (action: ReturnType<typeof AddMessageAC>) => void) => {
     return {
-        addMessage: () => dispatch(AddMessageAC()),
-        updateNewMessageText: (text: string) => dispatch(UpdateNewMessageTextAC(text))
+        addMessage: (newMessage: string) => dispatch(AddMessageAC(newMessage))
     }
 }
 
 export default compose<FC>(
     connect(mapStateToProps, mapDispatchToProps),
-    withAuthRedirect
+    //withAuthRedirect
 )(Dialogs)

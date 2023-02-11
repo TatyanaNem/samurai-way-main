@@ -30,7 +30,7 @@ const FriendsList = (props: FriendsListPropsType) => {
 
 const mapStateToProps = (state: StateType) => {
     return {
-        dialogs: state.dialogsPage.dialogs
+        dialogs: []
     }
 }
 

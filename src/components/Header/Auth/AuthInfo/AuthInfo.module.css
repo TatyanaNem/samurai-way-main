@@ -1,12 +1,20 @@
-.authSettings {
-    position: relative;
+.authInfo {
+    display: flex;
+    align-items: center;
+}
+
+.details {
     display: flex;
     align-items: center;
     padding: 10px 20px;
     cursor: pointer;
 }
 
-.authSettings::after {
+.details:hover {
+    background-color: #364b56;
+}
+
+/*.authInfo::after {
     content: '';
     position: absolute;
     width: 4px;
@@ -16,11 +24,8 @@
     border-bottom: 2px solid #ffffff;
     border-right: 2px solid #ffffff;
     transform: rotate(45deg) translateY(-100%);
-}
+}*/
 
-.authSettings:hover {
-    background-color: #364b56;
-}
 
 .userPhoto {
     display: inline-block;
@@ -32,7 +37,6 @@
 .userName {
     position: relative;
     display: inline-block;
-    min-width: 180px;
     padding: 10px;
     text-align: right;
     color: white;
@@ -49,6 +53,20 @@
     background-position: right center;
 }
 
-.authSettingsModal {
-    display: none;
+.authInfo button {
+    padding: 8px 10px;
+    background-color: transparent;
+    color: white;
+    border: 2px solid #ffffff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.authInfo button:hover {
+    color: mediumslateblue;
+    border-color: mediumslateblue;
+}
+
+.authInfo button:active {
+    scale: 0.95;
 }

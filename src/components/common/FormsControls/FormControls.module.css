@@ -1,0 +1,19 @@
+.formControl {
+    width: 100%;
+    height: 100%;
+    flex-grow: 1;
+}
+
+.formTextarea:focus {
+    outline: none;
+}
+
+.formError {
+    border-bottom: 2px solid red;
+}
+
+.formError + span {
+    margin-left: 10px;
+    font-size: 12px;
+    color: red;
+}

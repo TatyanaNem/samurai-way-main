@@ -1,0 +1,86 @@
+.loginPage {
+    padding: 40px;
+    margin: 0 auto;
+    width: 400px;
+    border: 1px solid #333333;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 2px 2px 5px #333333;
+}
+
+.loginPage h2 {
+    margin-top: 0;
+    color: #333333;
+}
+
+.loginForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.formField {
+    margin-bottom: 25px;
+}
+
+.loginForm input {
+    position: relative;
+    width: 300px;
+    height: 36px;
+    border: none;
+    border-bottom: 2px solid #333333;
+}
+
+.loginForm input:focus {
+    border-bottom: 2px solid mediumslateblue;
+    outline: none;
+}
+
+.checkboxField {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.loginForm input[type='checkbox'] {
+    width: 20px;
+    height: 20px;
+    color: mediumslateblue;
+    margin-bottom: 0;
+    margin-right: 15px;
+}
+
+.loginForm input[type='checkbox']:hover {
+    box-shadow: 1px 1px 8px mediumslateblue;
+}
+
+.loginForm button {
+    padding: 8px 20px;
+    background-color: mediumslateblue;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 20px;
+    box-shadow: 2px 2px 5px #333333;
+    cursor: pointer;
+}
+
+.loginForm button:hover {
+    background-color: blueviolet;
+}
+
+.loginForm button:active {
+    scale: 0.95;
+}
+
+.instruction {
+    font-size: 16px;
+    line-height: 24px;
+    color: grey;
+}
+
+.instruction span {
+    display: block;
+    text-align: justify;
+}

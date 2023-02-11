@@ -1,7 +1,8 @@
 import dialogsReducer from './dialogsReducer';
 import myProfileReducer, {
     ActionsType,
-    ProfilePageType} from './myProfileReducer';
+    ProfilePageType
+} from './myProfileReducer';
 
 export type DialogItemType = {
     id: string
@@ -18,7 +19,6 @@ export type MessageItemType = {
 export type DialogsPageType = {
     dialogs: Array<DialogItemType>
     messages: Array<MessageItemType>
-    newMessageText: string
 }
 
 export type StateType = {
@@ -68,8 +68,7 @@ const store: StoreType = {
                 {id: '4', message: 'I\'ve already learnt HTML and CSS', likesCount: 23},
                 {id: '5', message: 'Yo!!!', likesCount: 36},
                 {id: '6', message: 'Yo!!!', likesCount: 32},
-            ],
-            newPostText: ''
+            ]
         },
         dialogsPage: {
             dialogs: [
@@ -103,8 +102,7 @@ const store: StoreType = {
                 {id: '4', message: 'Yo!!!'},
                 {id: '5', message: 'Yo!!!'},
                 {id: '6', message: 'Yo!!!'},
-            ],
-            newMessageText: ''
+            ]
         }
     },
     _callSubscriber() {
@@ -120,7 +118,7 @@ const store: StoreType = {
 
     dispatch(action: ActionsType) {
         this._state.profilePage = myProfileReducer(this._state.profilePage, action)
-        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+        //this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
         this._callSubscriber()
     }
 }

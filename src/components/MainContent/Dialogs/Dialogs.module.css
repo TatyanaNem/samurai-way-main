@@ -65,6 +65,7 @@
 }
 
 .messages__list {
+    width: 100%;
     margin-left: 20px;
 }
 
@@ -85,4 +86,54 @@
     width: 5px;
     height: 5px;
     background: radial-gradient(circle at top left, rgba(0, 0, 0, 0) 5px, rgba(128, 128, 128, 1) 0);
+}
+
+.addMessageForm {
+    display: flex;
+    align-items: start;
+    min-height: 80px;
+    margin-top: 40px;
+}
+
+.addMessageForm textarea {
+    position: relative;
+    width: 100%;
+    min-height: 30px;
+    padding: 5px 10px;
+    border-radius: 10px;
+    background-color: #edf2f6;
+    border: 1px solid #333333;
+    resize: none;
+    word-wrap: break-word;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.addMessageForm button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    margin-left: 20px;
+    background-color: transparent;
+    border: none;
+    color: mediumslateblue;
+    cursor: pointer;
+}
+
+.addMessageForm button:hover {
+    scale: 1.1;
+}
+
+.addMessageForm button:active {
+    scale: 0.95;
+}
+
+.addMessageForm button svg {
+    width: 25px;
+    height: 25px;
+}
+
+.addMessageForm button:hover svg {
+    fill: blueviolet;
 }

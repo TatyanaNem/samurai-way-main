@@ -1,22 +1,12 @@
-import {DialogsPageType, MessageItemType} from './store';
-import {ActionsType} from './myProfileReducer';
+import {DialogsPageType} from './store';
 
 export type AddMessageActionType = {
     type: 'ADD-MESSAGE'
+    newMessage: string
 }
 
-export type UpdateNewMessageTextActionType = {
-    type: 'UPDATE-NEW-MESSAGE-TEXT'
-    newMessageText: string
-}
+type ActionsType = AddMessageActionType
 
-export const AddMessageAC = () => {
-    return {type: 'ADD-MESSAGE'} as const
-}
-
-export const UpdateNewMessageTextAC = (text: string) => {
-    return {type: 'UPDATE-NEW-MESSAGE-TEXT', newMessageText: text} as const
-}
 
 const initialState: DialogsPageType = {
     dialogs: [
@@ -54,17 +44,17 @@ const initialState: DialogsPageType = {
         {id: '4', message: 'Yo!!!'},
         {id: '5', message: 'Yo!!!'},
         {id: '6', message: 'Yo!!!'},
-    ],
-    newMessageText: ''
+    ]
+}
+
+export const AddMessageAC = (newMessage: string) => {
+    return {type: 'ADD-MESSAGE', newMessage} as const
 }
 
 const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsType) => {
     switch (action.type) {
         case 'ADD-MESSAGE':
-            const newMessage: MessageItemType = {id: (Math.random() * 100).toString(), message: state.newMessageText}
-            return {...state, messages: [...state.messages, newMessage], newMessageText: ''}
-        case 'UPDATE-NEW-MESSAGE-TEXT':
-            return {...state, newMessageText: action.newMessageText}
+            return {...state, messages: [...state.messages, {id: (Math.random()* 100 + 5).toString(), message: action.newMessage}]}
         default:
             return state;
     }

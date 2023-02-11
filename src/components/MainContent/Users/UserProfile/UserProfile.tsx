@@ -3,7 +3,6 @@ import {PostType, ProfileType} from '../../../../redux/myProfileReducer';
 type ProfilePropsType = {
     profile: null | ProfileType
     posts: PostType[]
-    newPostText: string
     isAuth: boolean
 }
 

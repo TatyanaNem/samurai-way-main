@@ -2,7 +2,7 @@ import {instance} from './instance';
 import {AxiosResponse} from 'axios';
 
 export const profileAPI = {
-    getUserProfile(userId: string) {
+    getUserProfile(userId: number) {
         return instance.get('profile/' + userId).then(response => response.data)
     },
     updateProfileStatus (newStatus: string) {

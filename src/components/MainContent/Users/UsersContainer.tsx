@@ -43,7 +43,7 @@ class UsersContainer extends React.Component<UsersPropsType> {
         this.props.getUsersTC(this.props.currentPage, this.props.usersPerPage)
     }
 
-    onPageChanged = (pageNumber: number) => {    // стрелочный тип либо как вариант при передаче в атрибутах this.onPageChanged.bind(this)
+    onPageChanged = (pageNumber: number) => {    // стрелочный тип либо как вариант при передаче в атрибутах this .onPageChanged.bind(this)
         this.props.setCurrentPage(pageNumber)
         this.props.getUsersTC(pageNumber, this.props.usersPerPage)
     }

@@ -3,12 +3,11 @@ import {connect} from 'react-redux';
 import {StateType} from '../../../redux/redux-store';
 import {PostType, ProfileType, setUserProfileTC} from '../../../redux/myProfileReducer';
 import {RouteComponentProps, withRouter} from 'react-router-dom';
-import MyProfile from './MyProfile';
+import Profile from './Profile';
 import {compose} from 'redux';
 
 type MapStatePropsType = {
     posts: PostType[]
-    newPostText: string
     profile: null | ProfileType
     isAuth: boolean
 }
@@ -25,7 +24,7 @@ type OwnPropsType = MapStatePropsType & MapDispatchPropsType
 
 type NewProfileContainerPropsType = RouteComponentProps<PathParamsType> & OwnPropsType;
 
-class MyProfileContainer extends React.Component<NewProfileContainerPropsType> {
+class ProfileContainer extends React.Component<NewProfileContainerPropsType> {
     componentDidMount() {
         let userId = this.props.match.params.userId
         if (!userId) {
@@ -35,11 +34,10 @@ class MyProfileContainer extends React.Component<NewProfileContainerPropsType> {
     }
 
     render () {
-        return <MyProfile {...this.props}
-                          profile={this.props.profile}
-                          posts={this.props.posts}
-                          newPostText={this.props.newPostText}
-                          isAuth={this.props.isAuth}
+        return <Profile {...this.props}
+                        profile={this.props.profile}
+                        posts={this.props.posts}
+                        isAuth={this.props.isAuth}
         />
     }
 }
@@ -47,7 +45,6 @@ class MyProfileContainer extends React.Component<NewProfileContainerPropsType> {
 const mapStateToProps = (state: StateType): MapStatePropsType => {
     return {
         posts: state.profilePage.posts,
-        newPostText: state.profilePage.newPostText,
         profile: state.profilePage.profile,
         isAuth: state.auth.isAuth
     }
@@ -56,7 +53,7 @@ const mapStateToProps = (state: StateType): MapStatePropsType => {
 export default compose<FC>(
     connect(mapStateToProps, {setUserProfileTC}),
     withRouter
-)(MyProfileContainer)
+)(ProfileContainer)
 
 /*
 export default withAuthRedirect(connect(mapStateToProps, {setUserProfileTC})(withRouterComponent))*/
