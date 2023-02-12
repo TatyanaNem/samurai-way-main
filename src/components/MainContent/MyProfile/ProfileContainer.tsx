@@ -5,11 +5,13 @@ import {PostType, ProfileType, setUserProfileTC} from '../../../redux/myProfileR
 import {RouteComponentProps, withRouter} from 'react-router-dom';
 import Profile from './Profile';
 import {compose} from 'redux';
+import {withAuthRedirect} from '../../../HOC/withAuthRedirect';
 
 type MapStatePropsType = {
     posts: PostType[]
     profile: null | ProfileType
     isAuth: boolean
+    authorizedUserId: null | number
 }
 
 type MapDispatchPropsType = {
@@ -28,7 +30,7 @@ class ProfileContainer extends React.Component<NewProfileContainerPropsType> {
     componentDidMount() {
         let userId = this.props.match.params.userId
         if (!userId) {
-            userId = '2';
+            userId = this.props.authorizedUserId!.toString();
         }
         this.props.setUserProfileTC(userId)
     }
@@ -46,13 +48,15 @@ const mapStateToProps = (state: StateType): MapStatePropsType => {
     return {
         posts: state.profilePage.posts,
         profile: state.profilePage.profile,
-        isAuth: state.auth.isAuth
+        isAuth: state.auth.isAuth,
+        authorizedUserId: state.auth.userId
     }
 }
 
 export default compose<FC>(
     connect(mapStateToProps, {setUserProfileTC}),
-    withRouter
+    withRouter,
+    withAuthRedirect
 )(ProfileContainer)
 
 /*

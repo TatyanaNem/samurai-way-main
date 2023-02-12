@@ -2,6 +2,7 @@ import {AnyAction, Dispatch} from 'redux';
 import {authAPI} from '../API/authAPI';
 import {StateType} from './redux-store';
 import {ThunkDispatch} from 'redux-thunk';
+import {stopSubmit} from 'redux-form';
 
 type initialStateType = {
     userId: null | number
@@ -51,10 +52,14 @@ export const authorizeMeTC = () => (dispatch: Dispatch) => {
 }
 
 export const loginTC = (email: string, password: string, rememberMe: boolean) => (dispatch: ThunkDispatch<StateType, void, AnyAction>) => {
+
     authAPI.login(email, password, rememberMe)
         .then(data => {
             if (data.resultCode === 0) {
                 dispatch(authorizeMeTC())
+            } else {
+                let message = data.messages.length > 0 ? data.messages[0] : 'some error'
+                dispatch(stopSubmit('login', {_error: message}))
             }
         })
 }

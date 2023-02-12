@@ -4,6 +4,7 @@ import {AddMessageAC} from '../../../redux/dialogsReducer';
 import {connect} from 'react-redux';
 import {StateType} from '../../../redux/redux-store';
 import {compose} from 'redux';
+import {withAuthRedirect} from '../../../HOC/withAuthRedirect';
 
 const mapStateToProps = (state: StateType) => {
     return {
@@ -19,5 +20,5 @@ const mapDispatchToProps = (dispatch: (action: ReturnType<typeof AddMessageAC>) 
 
 export default compose<FC>(
     connect(mapStateToProps, mapDispatchToProps),
-    //withAuthRedirect
+    withAuthRedirect
 )(Dialogs)

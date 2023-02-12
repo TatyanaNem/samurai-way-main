@@ -17,3 +17,9 @@
     font-size: 12px;
     color: red;
 }
+
+.formSummaryError {
+    margin-bottom: 20px;
+    color: red;
+}
+
