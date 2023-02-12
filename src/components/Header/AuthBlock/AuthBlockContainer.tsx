@@ -2,10 +2,9 @@ import React, {FC} from 'react';
 import AuthBlock from './AuthBlock';
 import {StateType} from '../../../redux/redux-store';
 import {connect} from 'react-redux';
-import {authorizeMeTC} from '../../../redux/authReducer';
+import {authorizeMeTC, logoutTC} from '../../../redux/authReducer';
 import {compose} from 'redux';
 import {setUserProfileTC} from '../../../redux/myProfileReducer';
-import {withAuthRedirect} from '../../../HOC/withAuthRedirect';
 
 class AuthBlockContainer extends React.Component<any, any> {
     componentDidMount() {
@@ -13,7 +12,7 @@ class AuthBlockContainer extends React.Component<any, any> {
     }
 
     render() {
-        return <AuthBlock {...this.props} isAuth={this.props.isAuth} login={this.props.login}/>
+        return <AuthBlock {...this.props} isAuth={this.props.isAuth} login={this.props.login} logout={this.props.logoutTC}/>
     }
 }
 
@@ -26,6 +25,7 @@ type MapStatePropsType = {
 type MapDispatchPropsType = {
     authorizeMeTC: () => void
     setUserProfileTC: (userId: number) => void
+    logoutTC: () => void
 }
 
 const
@@ -38,5 +38,5 @@ const
     }
 
 
-export default compose<FC>(connect<MapStatePropsType, MapDispatchPropsType, {}, StateType> (MapStateToProps, {authorizeMeTC, setUserProfileTC})
+export default compose<FC>(connect<MapStatePropsType, MapDispatchPropsType, {}, StateType> (MapStateToProps, {authorizeMeTC, setUserProfileTC, logoutTC})
 )(AuthBlockContainer);

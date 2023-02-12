@@ -5,13 +5,14 @@ import {NavLink} from 'react-router-dom';
 type AuthPropsType = {
     isAuth: boolean
     login: string
+    logout: () => void
 }
 
 const AuthBlock = (props: AuthPropsType) => {
     return (
         <div>
             {props.isAuth
-                ? <AuthInfo login={props.login}/>
+                ? <AuthInfo login={props.login} logout={props.logout}/>
                 : <NavLink to={'/login'}>LOG IN</NavLink>}
         </div>
     );

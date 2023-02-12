@@ -22,7 +22,7 @@ const MainContent = () => {
                 <Sidebar/>
                 <div className={s.mainContentWrapper}>
                     <Switch>
-                        <Route exact={true} path={'/'} render={() => <ProfileContainer />}/>
+                        <Route exact={true} path={'/'} render={() => <Login />}/>
                         <Route path={'/profile/:userId?'} render={() => <ProfileContainer/>}/>
                         <Route path={'/dialogs'} render={() => <DialogsContainer/>}/>
                         <Route path={'/users'} render={() => <UsersContainer/>}/>

@@ -4,6 +4,7 @@ import styles from './AuthInfo.module.css';
 
 type AuthInfoProps = {
     login: string
+    logout: () => void
 }
 
 const AuthInfo = (props: AuthInfoProps) => {
@@ -13,7 +14,7 @@ const AuthInfo = (props: AuthInfoProps) => {
                 <img className={styles.userPhoto} src={userPhoto} alt='user photo'/>
                 <span className={styles.userName}>{props.login}</span>
             </div>
-            <button>LOG OUT</button>
+            <button onClick={props.logout}>LOG OUT</button>
         </div>
     );
 };

@@ -1,11 +1,16 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {Field, InjectedFormProps, reduxForm} from 'redux-form';
 import styles from './Login.module.css';
 import {Input} from '../../common/FormsControls/FormsControls';
 import {required} from '../../common/validators/validators';
+import {connect} from 'react-redux';
+import {loginTC} from '../../../redux/authReducer';
+import {compose} from 'redux';
+import {StateType} from '../../../redux/redux-store';
+import {Redirect} from 'react-router-dom';
 
 type FormDataType = {
-    login: string
+    email: string
     password: string
     rememberMe: boolean
 }
@@ -21,8 +26,8 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
             </p>
             <label className={styles.formField}>
                 <Field type={'e-mail'}
-                       placeholder={'Enter your login'}
-                       name={'login'}
+                       placeholder={'Enter your e-mail'}
+                       name={'email'}
                        component={Input}
                        validate={[required]}
                 ></Field>
@@ -51,10 +56,19 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
 
 const LoginReduxForm = reduxForm<FormDataType>({form: 'login'})(LoginForm)
 
-const Login = () => {
+type LoginPropsType = {
+    isAuth: boolean
+    loginTC: (email: string, password: string, rememberMe: boolean) => void
+}
+
+const Login = (props: LoginPropsType) => {
     const onSubmit = (formData: FormDataType) => {
-        console.log(formData)
+        props.loginTC(formData.email, formData.password, formData.rememberMe)
     }
+    if (props.isAuth) {
+        return <Redirect to={'/profile'} />
+    }
+
     return (
         <div className={styles.loginPage}>
             <h2>LOGIN</h2>
@@ -63,4 +77,13 @@ const Login = () => {
     );
 };
 
-export default Login;
+type MapStatePropsType = {
+    isAuth: boolean
+}
+
+const mapStateToProps = (state: StateType): MapStatePropsType => ({
+    isAuth: state.auth.isAuth
+})
+
+
+export default compose<FC>(connect(mapStateToProps, {loginTC}))(Login);
