@@ -7,12 +7,10 @@ import Settings from './Settings/Settings';
 import Sidebar from '../Sidebar/Sidebar';
 import UsersContainer from './Users/UsersContainer';
 import ProfileContainer from './MyProfile/ProfileContainer';
-import AuthContainer from '../Header/AuthBlock/AuthBlockContainer';
 import DialogsContainer from './Dialogs/DialogsContainer';
 import Login from './Login/Login';
 import {useSelector} from 'react-redux';
 import {StateType} from '../../redux/redux-store';
-import AuthBlockContainer from '../Header/AuthBlock/AuthBlockContainer';
 
 const MainContent = () => {
     const isAuth = useSelector<StateType, boolean>(state => state.auth.isAuth)

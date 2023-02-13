@@ -1,5 +1,5 @@
 import React from 'react';
-import AuthInfo from '../Auth/AuthInfo/AuthInfo';
+import AuthInfo from './AuthInfo/AuthInfo';
 import {NavLink} from 'react-router-dom';
 
 type AuthPropsType = {

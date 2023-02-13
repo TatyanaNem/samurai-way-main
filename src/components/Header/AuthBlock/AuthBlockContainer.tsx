@@ -17,7 +17,6 @@ class AuthBlockContainer extends React.Component<any, any> {
 }
 
 type MapStatePropsType = {
-    userId: null | number
     login: null | string
     isAuth: boolean
 }
@@ -31,7 +30,6 @@ type MapDispatchPropsType = {
 const
     MapStateToProps = (state: StateType): MapStatePropsType => {
         return {
-            userId: state.auth.userId,
             login: state.auth.login,
             isAuth: state.auth.isAuth
         }

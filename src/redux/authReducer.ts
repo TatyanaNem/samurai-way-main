@@ -42,7 +42,7 @@ export const setUserAuthData = (userId: number | null, email: string | null, log
 } as const)
 
 export const authorizeMeTC = () => (dispatch: Dispatch) => {
-    authAPI.authMe()
+    return authAPI.authMe()
         .then(data => {
         if (data.resultCode === 0) {
             let {id, email, login} = data.data

@@ -6,6 +6,7 @@
 .details {
     display: flex;
     align-items: center;
+    text-decoration: none;
     padding: 10px 20px;
     cursor: pointer;
 }

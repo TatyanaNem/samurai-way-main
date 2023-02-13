@@ -1,7 +1,10 @@
 .formControl {
     width: 100%;
     height: 100%;
-    flex-grow: 1;
+}
+
+input[type='checkbox'] {
+    display: inline;
 }
 
 .formTextarea:focus {

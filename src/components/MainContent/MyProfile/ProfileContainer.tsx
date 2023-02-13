@@ -30,7 +30,7 @@ class ProfileContainer extends React.Component<NewProfileContainerPropsType> {
     componentDidMount() {
         let userId = this.props.match.params.userId
         if (!userId) {
-            userId = this.props.authorizedUserId!.toString();
+            userId = this.props.authorizedUserId + '';
         }
         this.props.setUserProfileTC(userId)
     }
