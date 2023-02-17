@@ -1,24 +1,22 @@
 import React from 'react';
 import styles from './FriendsList.module.css';
-import {connect} from 'react-redux';
+import {connect, useSelector} from 'react-redux';
 import {StateType} from '../../../redux/redux-store';
-import {DialogItemType} from '../../../redux/store';
 import userPhoto from '../../../assets/images/userPhoto.png';
+import {selectFollowedUsers} from './friendsListSelectors';
 
-type FriendsListPropsType = {
-    dialogs: DialogItemType[]
-}
 
-const FriendsList = (props: FriendsListPropsType) => {
-    let counter = props.dialogs.length
+const FriendsList = () => {
+    const friends = useSelector(selectFollowedUsers)
+    let counter = friends.length
     return (
         <div className={styles.friendsList}>
             <h4>Friends <span>{counter}</span></h4>
             <ul className={styles.friendsListWrapper}>
-                {props.dialogs.map(el => {
+                {friends.map(el => {
                     return (
                         <li key={el.id}>
-                            <img src={el.avatar ? el.avatar : userPhoto} alt="Friend's avatar"/>
+                            <img src={el.photos.small ? el.photos.small : userPhoto} alt="Friend's avatar"/>
                             <div>{el.name}</div>
                         </li>
                     )
@@ -28,12 +26,5 @@ const FriendsList = (props: FriendsListPropsType) => {
     );
 };
 
-const mapStateToProps = (state: StateType) => {
-    return {
-        dialogs: []
-    }
-}
 
-const FriendsListContainer = connect(mapStateToProps)(FriendsList)
-
-export default FriendsListContainer;
+export default FriendsList;

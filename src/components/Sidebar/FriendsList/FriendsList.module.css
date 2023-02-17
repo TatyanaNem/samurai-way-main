@@ -20,16 +20,18 @@
 
 .friendsListWrapper {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: start;
     flex-wrap: wrap;
     list-style-type: none;
-    padding: 12px;
+    padding: 20px 35px;
     margin: 0;
 }
 
 .friendsListWrapper img {
-    width: 40px;
-    height: 40px;
+    width: 25px;
+    height: 25px;
+    margin-right: 20px;
     border-radius: 50%;
     border: 1px solid #333333;
     text-align: center;
@@ -38,9 +40,10 @@
 
 .friendsListWrapper li {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     align-items: center;
-    margin-right: 15px;
+    justify-content: center;
+    margin-right: 20px;
     margin-bottom: 10px;
     cursor: pointer;
 }
