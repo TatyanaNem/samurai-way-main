@@ -47,7 +47,7 @@ const usersReducer = (state: UsersPageType = initialState, action: ActionsType):
         case 'UNFOLLOW':
             return {...state, users: state.users.map(u => u.id === action.userId ? {...u, followed: false} : u)}
         case 'SET-USERS':
-            return {...state, users: [ ...action.users,...state.users]}
+            return {...state, users: action.users}
         case 'SET-TOTAL-USERS-COUNT':
             return {...state, totalUsersCount: action.totalUsersCount}
         case 'SET-CURRENT-PAGE':

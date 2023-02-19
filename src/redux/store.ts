@@ -68,7 +68,8 @@ const store: StoreType = {
                 {id: '4', message: 'I\'ve already learnt HTML and CSS', likesCount: 23},
                 {id: '5', message: 'Yo!!!', likesCount: 36},
                 {id: '6', message: 'Yo!!!', likesCount: 32},
-            ]
+            ],
+            status: ''
         },
         dialogsPage: {
             dialogs: [

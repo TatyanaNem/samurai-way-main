@@ -1,0 +1,44 @@
+.statusInput {
+    min-width: 220px;
+    border: none;
+    font-size: 14px;
+    border-bottom: 2px solid mediumslateblue;
+}
+
+.statusInput:focus {
+    outline: none;
+}
+
+.statusSpan {
+    display: inline-block;
+    position: relative;
+    font-size: 14px;
+    max-width: 220px;
+    cursor: pointer;
+}
+
+.statusSpan svg {
+    position: absolute;
+    margin-left: 15px;
+    fill: grey;
+}
+
+.statusSpan:hover svg {
+    fill: mediumslateblue;
+}
+
+.statusSpan.statusSpan::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    right: 0;
+    width: 0;
+    height: 2px;
+    background-color: mediumslateblue;
+    transition: width 0.3s ease-in-out;
+}
+
+.statusSpan:hover.statusSpan::after {
+    width: 100%;
+}

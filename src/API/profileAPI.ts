@@ -1,13 +1,17 @@
 import {instance} from './instance';
-import {AxiosResponse} from 'axios';
 
 export const profileAPI = {
     getUserProfile(userId: number) {
-        return instance.get('profile/' + userId).then(response => response.data)
+        return instance.get('profile/' + userId)
+            .then(response => response.data)
     },
-    updateProfileStatus (newStatus: string) {
-        return instance.put<{ newStatus: string }, AxiosResponse<ResponseType>>(`profile/status`, {newStatus})
-            .then(response => response.data.data)
+    getUserStatus(userId: number) {
+        return instance.get('profile/status/' + userId.toString())
+            .then(response => response.data)
+    },
+    updateUserStatus (status: string) {
+        return instance.put(`profile/status`, {status})
+            .then(response => response.data)
     }
 }
 

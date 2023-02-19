@@ -5,6 +5,7 @@ import {AddMessageActionType} from './dialogsReducer';
 export type ProfilePageType = {
     profile: null | ProfileType
     posts: Array<PostType>
+    status: string
 }
 
 export type ProfileType = {
@@ -55,9 +56,6 @@ export const AddPostAC = (newPostMessage: string) => {
     return {type: 'ADD-POST', newPostMessage} as const
 }
 
-export const UpdateNewPostTextAC = (text: string) => {
-    return {type: 'UPDATE-NEW-POST-TEXT', newText: text} as const
-}
 export const setUserProfileAC = (profile: ProfileType) => {
     return {type: 'SET-USER-PROFILE', profile} as const
 }
@@ -75,7 +73,8 @@ const initialState: ProfilePageType = {
         {id: '4', message: 'I\'ve already learnt HTML and CSS', likesCount: 23},
         {id: '5', message: 'Yo!!!', likesCount: 36},
         {id: '6', message: 'Yo!!!', likesCount: 32},
-    ]
+    ],
+    status: ''
 }
 
 const myProfileReducer = (state: ProfilePageType = initialState, action: ActionsType) => {
@@ -88,7 +87,7 @@ const myProfileReducer = (state: ProfilePageType = initialState, action: Actions
         case 'SET-USER-PROFILE':
             return {...state, profile: action.profile}
         case 'SET-PROFILE-STATUS':
-            return {...state, aboutMe: action.status}
+            return {...state, status: action.status}
         default:
             return state;
     }
@@ -99,9 +98,18 @@ export const setUserProfileTC = (userId: number) => (dispatch: Dispatch) => {
         .then(data => dispatch(setUserProfileAC(data)))
 }
 
-// export const updateProfileStatusTC = (newStatus: string) => (dispatch: Dispatch) => {
-//     profileAPI.updateProfileStatus(newStatus)
-//         .then(data => dispatch(setProfileStatusAC(data)))
-// }
+export const getProfileStatusTC = (userId: number) => (dispatch: Dispatch) => {
+    profileAPI.getUserStatus(userId)
+        .then(data => dispatch(setProfileStatusAC(data)))
+}
+
+export const updateProfileStatusTC = (newStatus: string) => (dispatch: Dispatch) => {
+    profileAPI.updateUserStatus(newStatus)
+        .then(data => {
+            if (data.resultCode === 0) {
+                dispatch(setProfileStatusAC(newStatus))
+            }
+        })
+}
 
 export default myProfileReducer;

@@ -39,13 +39,13 @@
     min-width: 100px;
     max-width: 400px;
     padding: 20px;
+    text-align: start;
 }
 
 .fullName {
     position: relative;
     display: flex;
     align-items: center;
-    justify-content: center;
     font-weight: bold;
     padding-right: 30px;
     cursor: pointer;

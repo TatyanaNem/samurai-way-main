@@ -4,7 +4,7 @@
 
 .addPostForm {
     display: flex;
-    align-items: start;
+    align-items: flex-start;
     min-height: 80px;
 }
 

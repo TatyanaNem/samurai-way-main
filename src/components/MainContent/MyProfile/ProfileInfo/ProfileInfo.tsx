@@ -1,17 +1,21 @@
 import React from 'react';
 import s from './ProfileInfo.module.css';
-import {ProfileType} from '../../../../redux/myProfileReducer';
+import {ProfileType, updateProfileStatusTC} from '../../../../redux/myProfileReducer';
 import userPhoto from '../../../../assets/images/userPhoto.png';
 import {FaPen} from 'react-icons/fa';
-import EditableSpan from '../../../common/EditableSpan';
+import {useDispatch} from 'react-redux';
+import ProfileStatus from './ProfileStatus/ProfileStatus';
 
 type ProfileInfoPropsType = {
     profile: null | ProfileType
+    status: null | string
+    updateStatus: (status: string) => void
 }
 
 const ProfileInfo = (props: ProfileInfoPropsType) => {
+    const dispatch = useDispatch()
     const updateProfileStatus = (newStatus: string) => {
-
+        dispatch(updateProfileStatusTC(newStatus))
     }
 
     return (
@@ -24,8 +28,7 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
                 <div className={s.descriptionBlock}>
                     <div className={s.personalData}>
                         <h2 className={s.fullName} onClick={() => {}}>{props.profile?.fullName}<FaPen size='0.8rem' color='mediumslateblue' className={s.svg}/></h2>
-                        <EditableSpan status={props.profile?.aboutMe} onChange={updateProfileStatus}/>
-                        {/*<p className={s.status}>"{props.profile?.aboutMe === null ? 'Hey there!!!' : props.profile?.aboutMe}"</p>*/}
+                        {props.status && <ProfileStatus/>}
                     </div>
                     <div className={s.lookingForJob}>
                         <span>{props.profile?.lookingForAJob ? '#ищуPаботу': '' }</span>
