@@ -49,6 +49,7 @@ class ProfileContainer extends React.Component<NewProfileContainerPropsType> {
                         profile={this.props.profile}
                         posts={this.props.posts}
                         isAuth={this.props.isAuth}
+                        authorizedUserId={this.props.authorizedUserId}
                         status={this.props.status}
                         updateStatus={this.props.updateProfileStatusTC}
         />

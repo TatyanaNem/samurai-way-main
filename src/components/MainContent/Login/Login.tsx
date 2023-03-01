@@ -1,14 +1,12 @@
 import React, {FC} from 'react';
-import {Field, InjectedFormProps, reduxForm} from 'redux-form';
 import styles from './Login.module.css';
-import {Input} from '../../common/FormsControls/FormsControls';
-import {required} from '../../common/validators/validators';
 import {connect} from 'react-redux';
 import {loginTC} from '../../../redux/authReducer';
 import {compose} from 'redux';
 import {StateType} from '../../../redux/redux-store';
 import {Redirect} from 'react-router-dom';
 import style from '../../common/FormsControls/FormControls.module.css';
+import {useFormik, Field} from 'formik';
 
 type FormDataType = {
     email: string
@@ -16,9 +14,45 @@ type FormDataType = {
     rememberMe: boolean
 }
 
-const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
+type FormikErrorsType = {
+    email?: string
+    password?: string
+    rememberMe?: boolean
+}
+
+type LoginFormPropsType = {
+    onSubmit: (formData: FormDataType) => void
+}
+
+const LoginForm = ({onSubmit}: LoginFormPropsType) => {
+    const formik = useFormik({
+        initialValues: {
+            email: '',
+            password: '',
+            rememberMe: false
+        },
+        validate: (values: FormDataType) => {
+            const errors: FormikErrorsType = {}
+            if (!values.email) {
+                errors.email = 'Required'
+            } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+                errors.email = 'Invalid email'
+            }
+
+            if (!values.password) {
+                errors.password = 'Required'
+            } else if (values.password.length <= 3) {
+                errors.password = 'Password should be more than 3 symbols'
+            }
+            return errors
+        },
+        onSubmit: (values: FormDataType) => {
+            formik.resetForm()
+            onSubmit(values)
+        }
+    })
     return (
-        <form onSubmit={props.handleSubmit} className={styles.loginForm}>
+        <form onSubmit={formik.handleSubmit} className={styles.loginForm}>
             <p className={styles.instruction}>To log in get registered <a
                 href="https://social-network.samuraijs.com/" target="_blank">here</a></p>
             <p className={styles.instruction}>or use common test account credentials:
@@ -26,37 +60,31 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
                 <span>Password: <b>free</b></span>
             </p>
             <label className={styles.formField}>
-                <Field type={'e-mail'}
+                <input type={'e-mail'}
                        placeholder={'Enter your e-mail'}
-                       name={'email'}
-                       component={Input}
-                       validate={[required]}
-                ></Field>
+                       {...formik.getFieldProps('email')}
+                />
+                {formik.errors && formik.touched.email ? <div style={{color: 'red', paddingTop: '5px'}}>{formik.errors.email}</div> : null}
             </label>
             <label className={styles.formField}>
-                <Field type={'password'}
+                <input type={'password'}
                        placeholder={'Enter your password'}
-                       name={'password'}
-                       component={Input}
-                       validate={[required]}
-                ></Field>
+                       {...formik.getFieldProps('password')}
+                />
+                {formik.errors && formik.touched.password ? <div style={{color: 'red', paddingTop: '5px'}}>{formik.errors.password}</div> : null}
             </label>
 
             <label className={styles.checkboxField}>
-                <Field type={'checkbox'}
-                       name={'rememberMe'}
-                       component={Input}
-                >
-                </Field>
+                <input type={'checkbox'}
+                       {...formik.getFieldProps('rememberMe')}
+                        checked={formik.values.rememberMe}
+                />
                 <span>remember&nbsp;me</span>
             </label>
-            {props.error && <div className={style.formSummaryError}>{props.error}</div>}
-            <button type={'submit'}>LOG IN</button>
+            <button disabled={!formik.isValid} type={'submit'}>LOG IN</button>
         </form>
     )
 }
-
-const LoginReduxForm = reduxForm<FormDataType>({form: 'login'})(LoginForm)
 
 type LoginPropsType = {
     isAuth: boolean
@@ -74,7 +102,7 @@ const Login = (props: LoginPropsType) => {
     return (
         <div className={styles.loginPage}>
             <h2>LOGIN</h2>
-            <LoginReduxForm onSubmit={onSubmit}/>
+            <LoginForm onSubmit={onSubmit}/>
         </div>
     );
 };

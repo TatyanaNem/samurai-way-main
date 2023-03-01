@@ -31,7 +31,7 @@
     align-items: center;
     justify-content: space-between;
     margin-left: auto;
-    padding-left: 250px;
+    padding-left: 200px;
     padding-right: 20px;
 }
 
@@ -75,15 +75,20 @@
     padding: 2px;
     text-align: center;
     font-weight: bold;
-    color: #333333;
-    background-image: url('../../../../assets/images/purple-splash-purple.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
 }
 
 .lookingForJob div {
     font-size: 18px;
     font-weight: normal;
     color: #333333;
+}
+
+.text {
+    position: absolute;
+}
+
+.lookingForJobSVG {
+    position: absolute;
+    bottom: -10px;
+    left: 0;
 }

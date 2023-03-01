@@ -1,8 +1,10 @@
 .statusInput {
     min-width: 220px;
-    border: none;
+    padding: 5px;
+    border: 1px solid mediumslateblue;
+    border-radius: 6px;
     font-size: 14px;
-    border-bottom: 2px solid mediumslateblue;
+    box-shadow: 2px 2px 5px #656464;
 }
 
 .statusInput:focus {
@@ -13,32 +15,44 @@
     display: inline-block;
     position: relative;
     font-size: 14px;
-    max-width: 220px;
+    line-height: 20px;
+    max-width: 250px;
     cursor: pointer;
+    color: #656464;
 }
 
 .statusSpan svg {
+    display: none;
     position: absolute;
     margin-left: 15px;
     fill: grey;
 }
 
 .statusSpan:hover svg {
+    position: relative;
+    display: inline-block;
     fill: mediumslateblue;
 }
 
-.statusSpan.statusSpan::after {
-    content: '';
+.statusSpan::after {
+    opacity: 0;
+    content: 'edit status';
     position: absolute;
-    bottom: -5px;
-    left: 0;
-    right: 0;
-    width: 0;
-    height: 2px;
-    background-color: mediumslateblue;
-    transition: width 0.3s ease-in-out;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 100%;
+    width: 70px;
+    height: auto;
+    margin-left: 10px;
+    border: 1px solid mediumslateblue;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 13px;
+    color: mediumslateblue;
+    transition: all 0.3s ease-in-out;
 }
 
-.statusSpan:hover.statusSpan::after {
-    width: 100%;
+.statusSpan:hover::after {
+    display: inline-block;
+    opacity: 1;
 }

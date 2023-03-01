@@ -7,7 +7,8 @@ type ProfilePropsType = {
     profile: null | ProfileType
     posts: PostType[]
     isAuth: boolean
-    status: null | string
+    authorizedUserId: null | number
+    status: string
     updateStatus: (status: string) => void
 }
 
@@ -16,7 +17,7 @@ const Profile = (props: ProfilePropsType) => {
     //if (!props.isAuth) return <Redirect to={'/login'}/>
 
     return <div>
-        <ProfileInfo profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
+        <ProfileInfo profile={props.profile} status={props.status} updateStatus={props.updateStatus} authorizedUserId={props.authorizedUserId}/>
         <MyPostsContainer/>
     </div>
 }
