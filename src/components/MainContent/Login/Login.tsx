@@ -53,8 +53,8 @@ const LoginForm = ({onSubmit}: LoginFormPropsType) => {
     })
     return (
         <form onSubmit={formik.handleSubmit} className={styles.loginForm}>
-            <p className={styles.instruction}>To log in get registered <a
-                href="https://social-network.samuraijs.com/" target="_blank">here</a></p>
+            <p className={styles.instruction}>To log in get registered
+                <a href="https://social-network.samuraijs.com/" target="_blank">here</a></p>
             <p className={styles.instruction}>or use common test account credentials:
                 <span>Email: <b>free@samuraijs.com</b></span>
                 <span>Password: <b>free</b></span>

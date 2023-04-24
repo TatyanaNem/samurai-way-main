@@ -5,7 +5,7 @@ import {MessageItem} from './MessageItem';
 import {DialogsPageType} from '../../../redux/store';
 import {Field, InjectedFormProps, reduxForm} from 'redux-form';
 import {Textarea} from '../../common/FormsControls/FormsControls';
-import {maxLengthCreator, required} from '../../common/validators/validators';
+import {maxLengthCreator, required} from '../../../utils/validators/validators';
 import {AiOutlineSend} from 'react-icons/ai';
 
 type DialogsPropsType = {

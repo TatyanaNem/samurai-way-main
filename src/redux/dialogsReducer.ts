@@ -47,10 +47,12 @@ const initialState: DialogsPageType = {
     ]
 }
 
+//action creators
 export const AddMessageAC = (newMessage: string) => {
     return {type: 'ADD-MESSAGE', newMessage} as const
 }
 
+//reducer
 const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsType) => {
     switch (action.type) {
         case 'ADD-MESSAGE':

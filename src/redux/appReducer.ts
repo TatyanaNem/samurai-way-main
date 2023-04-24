@@ -27,9 +27,7 @@ export const appReducer = (state = initialState, action: ActionsType): initialSt
 
 export const InitializedSuccess = () => ({type: 'INITIALIZED-SUCCESS'} as const)
 
-export const initializeApp = () => (dispatch: ThunkDispatch<StateType, void, AnyAction>) => {
-    dispatch(authorizeMeTC())
-        .then(() => {
-        dispatch(InitializedSuccess())
-    })
+export const initializeApp = () => async (dispatch: ThunkDispatch<StateType, void, AnyAction>) => {
+    await dispatch(authorizeMeTC())
+    dispatch(InitializedSuccess())
 }

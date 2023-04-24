@@ -52,6 +52,8 @@ export type ActionsType = AddPostActionType
     | ReturnType<typeof setUserProfileAC>
     | ReturnType<typeof setProfileStatusAC>
 
+
+//action creators
 export const AddPostAC = (newPostMessage: string) => {
     return {type: 'ADD-POST', newPostMessage} as const
 }
@@ -77,6 +79,7 @@ const initialState: ProfilePageType = {
     status: ''
 }
 
+//reducer
 const myProfileReducer = (state: ProfilePageType = initialState, action: ActionsType) => {
     switch (action.type) {
         case 'ADD-POST':
@@ -93,23 +96,21 @@ const myProfileReducer = (state: ProfilePageType = initialState, action: Actions
     }
 }
 
-export const setUserProfileTC = (userId: number) => (dispatch: Dispatch) => {
-    profileAPI.getUserProfile(userId)
-        .then(data => dispatch(setUserProfileAC(data)))
+export const setUserProfileTC = (userId: number) => async (dispatch: Dispatch) => {
+    let response = await profileAPI.getUserProfile(userId)
+    dispatch(setUserProfileAC(response))
 }
 
-export const getProfileStatusTC = (userId: number) => (dispatch: Dispatch) => {
-    profileAPI.getUserStatus(userId)
-        .then(data => dispatch(setProfileStatusAC(data)))
+export const getProfileStatusTC = (userId: number) => async (dispatch: Dispatch) => {
+    let response = await profileAPI.getUserStatus(userId)
+    dispatch(setProfileStatusAC(response))
 }
 
-export const updateProfileStatusTC = (newStatus: string) => (dispatch: Dispatch) => {
-    profileAPI.updateUserStatus(newStatus)
-        .then(data => {
-            if (data.resultCode === 0) {
-                dispatch(setProfileStatusAC(newStatus))
-            }
-        })
+export const updateProfileStatusTC = (newStatus: string) => async (dispatch: Dispatch) => {
+    let response = await profileAPI.updateUserStatus(newStatus)
+    if (response.resultCode === 0) {
+        dispatch(setProfileStatusAC(newStatus))
+    }
 }
 
 export default myProfileReducer;

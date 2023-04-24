@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styles from './Users.module.css';
 import userPhoto from '../../../assets/images/userPhoto.png';
 import {UserType} from '../../../redux/usersReducer';
 import {NavLink} from 'react-router-dom';
+import {Pagination} from '../../common/Pagination/Pagination';
 
 type UsersType = {
     users: UserType[]
@@ -10,29 +11,22 @@ type UsersType = {
     usersPerPage: number
     currentPage: number
     onPageChanged: (pageNumber: number) => void
-    followUser: (userId: string) => void
-    unfollowUser: (userId: string) => void
-    followingInProgress: string[]
+    followUser: (userId: number) => void
+    unfollowUser: (userId: number) => void
+    followingInProgress: number[]
 }
 
 const Users = (props: UsersType) => {
-    let numberOfPages = Math.ceil(props.totalUsersCount / props.usersPerPage)
-    const pages = []
-    for (let i = 1; i <= 35; i++) {
-        pages.push(i)
-    }
-
+    console.log('Users rerender')
     return (
         <>
-            <div className={styles.pagination}>
-                {pages.map((p, i) => {
-                    return <button key={i}
-                                   className={props.currentPage === p ? styles.currentPage : ''}
-                                   onClick={() => props.onPageChanged(p)}>
-                        {p}
-                    </button>
-                })}
-            </div>
+            <Pagination
+                currentPage={props.currentPage}
+                usersPerPage={props.usersPerPage}
+                totalItemsCount={props.totalUsersCount}
+                onPageChanged={props.onPageChanged}
+                portionSize={5}
+            />
             <ul className={styles.usersList}>
                 {props.users.map(u => <>
                 <li key={u.id} className={styles.userItem}>

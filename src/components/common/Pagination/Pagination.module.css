@@ -1,0 +1,16 @@
+.pagination {
+    display: flex;
+    margin-bottom: 40px;
+}
+
+.buttonsBlock {
+    margin-right: 40px;
+}
+
+.optionsBlock {
+    display: flex;
+}
+
+.currentPage {
+    color: red;
+}

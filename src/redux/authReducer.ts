@@ -20,6 +20,7 @@ const initialState: initialStateType = {
 
 export type ActionsType = ReturnType<typeof setUserAuthData>
 
+//reducer
 export const authReducer = (state = initialState, action: ActionsType) => {
     switch (action.type) {
         case 'SET-USER-AUTH-DATA':
@@ -32,6 +33,8 @@ export const authReducer = (state = initialState, action: ActionsType) => {
     }
 }
 
+
+//action creators
 export const setUserAuthData = (userId: number | null, email: string | null, login: string | null, isAuth: boolean) => ({
     type: 'SET-USER-AUTH-DATA', payload: {
         userId,
@@ -41,34 +44,30 @@ export const setUserAuthData = (userId: number | null, email: string | null, log
     }
 } as const)
 
-export const authorizeMeTC = () => (dispatch: Dispatch) => {
-    return authAPI.authMe()
-        .then(data => {
-        if (data.resultCode === 0) {
-            let {id, email, login} = data.data
-            dispatch(setUserAuthData(id, email, login, true))
-        }
-    })
+
+//thunks
+export const authorizeMeTC = () => async (dispatch: Dispatch) => {
+    let data = await authAPI.authMe()
+    if (data.resultCode === 0) {
+        let {id, email, login} = data.data
+        dispatch(setUserAuthData(id, email, login, true))
+    }
 }
 
-export const loginTC = (email: string, password: string, rememberMe: boolean) => (dispatch: ThunkDispatch<StateType, void, AnyAction>) => {
+export const loginTC = (email: string, password: string, rememberMe: boolean) => async (dispatch: ThunkDispatch<StateType, void, AnyAction>) => {
 
-    authAPI.login(email, password, rememberMe)
-        .then(data => {
-            if (data.resultCode === 0) {
-                dispatch(authorizeMeTC())
-            } else {
-                let message = data.messages.length > 0 ? data.messages[0] : 'some error'
-                dispatch(stopSubmit('login', {_error: message}))
-            }
-        })
+    let response = await authAPI.login(email, password, rememberMe)
+    if (response.resultCode === 0) {
+        dispatch(authorizeMeTC())
+    } else {
+        let message = response.messages.length > 0 ? response.messages[0] : 'some error'
+        dispatch(stopSubmit('login', {error: message}))
+    }
 }
 
-export const logoutTC = () => (dispatch: ThunkDispatch<StateType, void, AnyAction>) => {
-    authAPI.logout()
-        .then(data => {
-            if (data.resultCode === 0) {
-                dispatch(setUserAuthData(null, null, null,false))
-            }
-        })
+export const logoutTC = () => async (dispatch: ThunkDispatch<StateType, void, AnyAction>) => {
+    let response = await authAPI.logout()
+    if (response.resultCode === 0) {
+        dispatch(setUserAuthData(null, null, null, false))
+    }
 }

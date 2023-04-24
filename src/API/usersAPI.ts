@@ -5,11 +5,11 @@ export const usersAPI = {
         return instance.get(`users?page=${currentPage}&count=${usersPerPage}`)
             .then(response => response.data)
     },
-    follow(userId: string) {
+    follow(userId: number) {
         return instance.post(`follow/${userId}`, {})
             .then(response => response.data)
     },
-    unfollow(userId: string) {
+    unfollow(userId: number) {
         return instance.delete(`follow/${userId}`)
             .then(response => response.data)
     }
