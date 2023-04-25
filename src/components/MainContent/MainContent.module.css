@@ -2,13 +2,14 @@
     display: grid;
     grid-template-columns: 300px 1fr;
     max-width: 1280px;
-    height: 100vh;
     margin: 0 auto;
     padding: 0 30px;
 }
 
 .mainContentWrapper {
     padding: 20px;
+    margin-top: 20px;
+    margin-bottom: 40px;
     border-radius: 10px;
     background-color: #fff;
 }

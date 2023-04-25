@@ -1,5 +1,11 @@
+.statusBlock {
+    display: flex;
+    align-items: center;
+}
+
 .statusInput {
     min-width: 220px;
+    margin-left: 10px;
     padding: 5px;
     border: 1px solid mediumslateblue;
     border-radius: 6px;
@@ -17,6 +23,7 @@
     font-size: 14px;
     line-height: 20px;
     max-width: 250px;
+    margin-left: 10px;
     cursor: pointer;
     color: #656464;
 }
@@ -35,7 +42,6 @@
 }
 
 .statusSpan::after {
-    opacity: 0;
     content: 'edit status';
     position: absolute;
     top: 50%;
@@ -43,16 +49,21 @@
     left: 100%;
     width: 70px;
     height: auto;
-    margin-left: 10px;
     border: 1px solid mediumslateblue;
+    box-shadow: 1px 1px 2px #333333;
     border-radius: 4px;
     text-align: center;
     font-size: 13px;
+    background-color: #ffffff;
     color: mediumslateblue;
     transition: all 0.3s ease-in-out;
 }
 
 .statusSpan:hover::after {
-    display: inline-block;
-    opacity: 1;
+    background-color: mediumslateblue;
+    color: white;
+}
+
+.statusSpan:active::after {
+    box-shadow: none;
 }

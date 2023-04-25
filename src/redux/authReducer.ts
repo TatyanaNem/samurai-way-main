@@ -61,7 +61,7 @@ export const loginTC = (email: string, password: string, rememberMe: boolean) =>
         dispatch(authorizeMeTC())
     } else {
         let message = response.messages.length > 0 ? response.messages[0] : 'some error'
-        dispatch(stopSubmit('login', {error: message}))
+        dispatch(stopSubmit('login', {_error: message}))
     }
 }
 

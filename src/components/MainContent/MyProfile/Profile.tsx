@@ -18,7 +18,6 @@ const Profile = (props: ProfilePropsType) => {
 
     return <div>
         <ProfileInfo profile={props.profile} status={props.status} updateStatus={props.updateStatus} authorizedUserId={props.authorizedUserId}/>
-        <MyPostsContainer/>
     </div>
 }
 
